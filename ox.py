@@ -100,6 +100,7 @@ class _XOGame(_XOTable):
 
         elif self.xo_map[1] == self.xo_map[5] == self.xo_map[9] != None:  # diagonal
             return self.player1 if self.xo_map[1] == self.player1.sign else self.player2
+<<<<<<< HEAD
 
 players = [_Player('P1', 'x'), _Player('P2', 'o')]
 game = _XOGame(*players)
@@ -126,3 +127,5 @@ while True:
         break
 else:
     print("No winner")
+=======
+>>>>>>> parent of 77016a9 (To run the test code, peice of code added to end of file)
