@@ -1,5 +1,6 @@
 from typing import Literal, Union, Optional
-
+import os
+import ast
 
 class _Player:
     def __init__(self, name: str, sign: Literal['x', 'o']) -> None:
@@ -52,10 +53,28 @@ class _XOGame(_XOTable):
         self.player2 = player2
 
     def _calculate_result(self):
-        pass
+        winner_id = self.winner().name
+        loser_id = self.player1.name if self.player1.name != self.winner().name else self.player2.name
+        print(loser_id)
+        if os.path.exists("result.txt"):
+            with open("result.txt", 'r') as file:
+                data = str(file.read())
+                result = ast.literal_eval(data)
+                result.update({winner_id: result.get(winner_id, 0) + 1})
+                result.update({loser_id: result.get(loser_id, 0)})
+            with open("result.txt", 'w') as file:
+                file.write(str(result))
+        else:
+            with open("result.txt", 'w') as file:
+                result = {}
+                result.update({winner_id: 1})
+                result.update({loser_id: 0})
+                file.write(str(result))
+        return f'The score is : \n {list(result.keys())[0]} {result[self.player1.name]} - {result[self.player2.name]} {list(result.keys())[1]}'
 
-    def mark(self, cell_no, player: Union[_Player, Literal['x', 'o'], int]):
-        pass
+
+def mark(self, cell_no, player: Union[_Player, Literal['x', 'o'], int]):
+        super().mark(cell_no, player.sign)
 
     def winner(self) -> Optional[_Player]:
         if self.xo_map[7] == self.xo_map[8] == self.xo_map[9] != None:  # across the top
