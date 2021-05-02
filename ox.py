@@ -73,8 +73,8 @@ class _XOGame(_XOTable):
         return f'The score is : \n {list(result.keys())[0]} {result[self.player1.name]} - {result[self.player2.name]} {list(result.keys())[1]}'
 
 
-def mark(self, cell_no, player: Union[_Player, Literal['x', 'o'], int]):
-        super().mark(cell_no, player.sign)
+    def mark(self, cell_no, player: Union[_Player, Literal['x', 'o'], int]):
+            super().mark(cell_no, player.sign)
 
     def winner(self) -> Optional[_Player]:
         if self.xo_map[7] == self.xo_map[8] == self.xo_map[9] != None:  # across the top
@@ -119,6 +119,7 @@ while True:
                 print(f'{game.winner().name} is the winner')
                 game_over = 1
                 print(game._calculate_result())
+                print('')
                 break
 
     if game_over:
