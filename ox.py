@@ -100,3 +100,28 @@ def mark(self, cell_no, player: Union[_Player, Literal['x', 'o'], int]):
 
         elif self.xo_map[1] == self.xo_map[5] == self.xo_map[9] != None:  # diagonal
             return self.player1 if self.xo_map[1] == self.player1.sign else self.player2
+
+players = [_Player('P1', 'x'), _Player('P2', 'o')]
+game = _XOGame(*players)
+table = _XOTable()
+counter = 0
+game_over = 0
+print(table)
+
+while True:
+    for j in players:
+        move = int(input(f'{j.name}'))
+        game.mark(move, j)
+        print(_XOTable())
+        counter += 1
+        if counter >= 5:
+            if game.winner():
+                print(f'{game.winner().name} is the winner')
+                game_over = 1
+                print(game._calculate_result())
+                break
+
+    if game_over:
+        break
+else:
+    print("No winner")
