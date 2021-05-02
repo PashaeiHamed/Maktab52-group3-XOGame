@@ -57,4 +57,26 @@ class _XOGame(_XOTable):
         pass
 
     def winner(self) -> Optional[_Player]:
-        pass
+        if self.xo_map[7] == self.xo_map[8] == self.xo_map[9] != None:  # across the top
+            return self.player1 if self.xo_map[7] == self.player1.sign else self.player2
+
+        elif self.xo_map[4] == self.xo_map[5] == self.xo_map[6] != None:  # across the middle
+            return self.player1 if self.xo_map[4] == self.player1.sign else self.player2
+
+        elif self.xo_map[1] == self.xo_map[2] == self.xo_map[3] != None:  # across the bottom
+            return self.player1 if self.xo_map[1] == self.player1.sign else self.player2
+
+        elif self.xo_map[1] == self.xo_map[4] == self.xo_map[7] != None:  # down the left side
+            return self.player1 if self.xo_map[1] == self.player1.sign else self.player2
+
+        elif self.xo_map[2] == self.xo_map[5] == self.xo_map[8] != None:  # down the middle
+            return self.player1 if self.xo_map[2] == self.player1.sign else self.player2
+
+        elif self.xo_map[3] == self.xo_map[6] == self.xo_map[9] != None:  # down the right side
+            return self.player1 if self.xo_map[3] == self.player1.sign else self.player2
+
+        elif self.xo_map[7] == self.xo_map[5] == self.xo_map[3] != None:  # diagonal
+            return self.player1 if self.xo_map[7] == self.player1.sign else self.player2
+
+        elif self.xo_map[1] == self.xo_map[5] == self.xo_map[9] != None:  # diagonal
+            return self.player1 if self.xo_map[1] == self.player1.sign else self.player2
