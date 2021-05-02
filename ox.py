@@ -48,7 +48,8 @@ class _XOGame(_XOTable):
         pass
 
     def __init__(self, player1: _Player, player2: _Player) -> None:
-        pass
+        self.player1 = player1
+        self.player2 = player2
 
     def _calculate_result(self):
         pass
